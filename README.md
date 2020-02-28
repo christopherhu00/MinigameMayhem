@@ -6,3 +6,5 @@ This holds our Arduino code used to play on our LED board (Naturally there isn't
 **The provided links will help you figure out how to program the NeoPixel LED strip on Arduino:**
 https://learn.adafruit.com/adafruit-neopixel-uberguide/arduino-library-use
 https://adafruit.github.io/Adafruit_NeoPixel/html/index.html
+
+**When writing your Arduino code, make sure that it's done in a manner where the dimensions can easily be modified in case we end up changing how our grid is laid out.**
