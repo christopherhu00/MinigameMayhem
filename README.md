@@ -8,3 +8,5 @@ https://learn.adafruit.com/adafruit-neopixel-uberguide/arduino-library-use
 https://adafruit.github.io/Adafruit_NeoPixel/html/index.html
 
 **When writing your Arduino code, make sure that it's done in a manner where the dimensions can easily be modified in case we end up changing how our grid is laid out.**
+
+**ALSO, PLEASE START A NEW BRANCH WHENEVER YOU'RE MAKING CHANGES. IF EVERYONE DIRECTLY COMMITS TO THE MASTER BRANCH, WE'LL GET MERGE CONFLICTS, WHICH ARE WAY MORE PAINFUL THAN YOU THINK**
