@@ -5,7 +5,7 @@
 #define LED_PIN    6
  
 // How many NeoPixels are attached to the Arduino?
-#define LED_COUNT 150
+#define LED_COUNT 300
  
 // Declare our NeoPixel strip object:
 Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
@@ -22,7 +22,7 @@ Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
 void setup() {
   // put your setup code here, to run once:
   strip.begin();
-  strip.fill(strip.Color(50, 0, 50), 0, 100);
+  strip.fill(strip.Color(75, 75, 75), 0, 300);
   strip.show(); // Initialize all pixels to 'off'
 }
 
