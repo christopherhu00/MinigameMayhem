@@ -1,5 +1,5 @@
 # MinigameMayhem
-This holds our Arduino code used to play on our LED board (Naturally there isn't anything yet, but it'll grow)
+This holds our Arduino code used to play on our LED board
 
 **PLEASE START A NEW BRANCH AND MAKE A PULL REQUEST WHENEVER YOU'RE MAKING CHANGES. IF EVERYONE DIRECTLY COMMITS TO THE MASTER BRANCH, WE'LL GET MERGE CONFLICTS, WHICH ARE UNIMAGINABLY PAINFUL.**
 
