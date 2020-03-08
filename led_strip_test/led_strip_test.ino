@@ -22,7 +22,24 @@ Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
 void setup() {
   // put your setup code here, to run once:
   strip.begin();
-  strip.fill(strip.Color(75, 75, 75), 0, 300);
+  for (int i = 5; i < 41; i+=3) {
+    strip.fill(strip.Color(0, 200, 200), i, 2); // Stops at index 40
+  }
+  for (int j = 53; j < 89; j+=3) {
+    strip.fill(strip.Color(0, 200, 0), j, 2); // Stops at index 88
+  }
+  for (int k = 103; k < 139; k+=3) {
+    strip.fill(strip.Color(200, 200, 0), k, 2); // Stops at index 138
+  }
+  for (int l = 153; l < 188; l+=3) {
+    strip.fill(strip.Color(200, 100, 0), l, 2); // Stops at index 187
+  }
+  for (int m = 203; m < 238; m+=3) {
+    strip.fill(strip.Color(200, 0, 0), m, 2); // Stops at index 237
+  }
+  for (int n = 253; n < 288; n+=3) {
+    strip.fill(strip.Color(200, 0, 200), n, 2); // Stops at index 287
+  }
   strip.show(); // Initialize all pixels to 'off'
 }
 
