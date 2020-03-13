@@ -18,32 +18,117 @@ Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
 //   NEO_RGB     Pixels are wired for RGB bitstream (v1 FLORA pixels, not v2)
 //   NEO_RGBW    Pixels are wired for RGBW bitstream (NeoPixel RGBW products)
 
+#define ROW0  5
+#define ROW1  53
+#define ROW2  103
+#define ROW3  153
+#define ROW4  203
+#define ROW5  253
+
+int red[6][12];
+int blue[6][12];
+int green[6][12];
 
 void setup() {
   // put your setup code here, to run once:
   strip.begin();
-  for (int i = 5; i < 41; i+=3) {
-    strip.fill(strip.Color(0, 200, 200), i, 2); // Stops after index 40
+  for (int y = 0; y < 6; y++) {
+    for (int x = 0; x < 12; x++) {
+      switch(y) {
+        case(0):
+          red[y][x] = 0;
+          blue[y][x] = 200;
+          green[y][x] = 200;
+          break;
+        case(1):
+          red[y][x] = 0;
+          blue[y][x] = 200;
+          green[y][x] = 0;
+          break;
+        case(2):
+          red[y][x] = 200;
+          blue[y][x] = 200;
+          green[y][x] = 0;
+          break;
+        case(3):
+          red[y][x] = 200;
+          blue[y][x] = 100;
+          green[y][x] = 0;
+          break;
+        case(4):
+          red[y][x] = 200;
+          blue[y][x] = 0;
+          green[y][x] = 0;
+          break;
+        case(5):
+          red[y][x] = 200;
+          blue[y][x] = 0;
+          green[y][x] = 200;
+          break;
+        default:
+          break;
+      }
+    }
   }
-  for (int j = 53; j < 89; j+=3) {
-    strip.fill(strip.Color(0, 200, 0), j, 2); // Stops after index 88
+  
+  for (int i = ROW0; i < 41; i+=3) {
+    strip.fill(strip.Color(red[0][(i-ROW0)/3], blue[0][(i-ROW0)/3], green[0][(i-ROW0)/3]), i, 2); // Stops after index 38
   }
-  for (int k = 103; k < 139; k+=3) {
-    strip.fill(strip.Color(200, 200, 0), k, 2); // Stops after index 138
+  for (int j = ROW1; j < 89; j+=3) {
+    strip.fill(strip.Color(red[1][(j-ROW1)/3], blue[1][(j-ROW1)/3], green[1][(j-ROW1)/3]), j, 2); // Stops after index 86
   }
-  for (int l = 153; l < 188; l+=3) {
-    strip.fill(strip.Color(200, 100, 0), l, 2); // Stops after index 187
+  for (int k = ROW2; k < 139; k+=3) {
+    strip.fill(strip.Color(red[2][(k-ROW2)/3], blue[2][(k-ROW2)/3], green[2][(k-ROW2)/3]), k, 2); // Stops after index 136
   }
-  for (int m = 203; m < 238; m+=3) {
-    strip.fill(strip.Color(200, 0, 0), m, 2); // Stops after index 237
+  for (int l = ROW3; l < 188; l+=3) {
+    strip.fill(strip.Color(red[3][(l-ROW3)/3], blue[3][(l-ROW3)/3], green[3][(l-ROW3)/3]), l, 2); // Stops after index 186
   }
-  for (int n = 253; n < 288; n+=3) {
-    strip.fill(strip.Color(200, 0, 200), n, 2); // Stops after index 287
+  for (int m = ROW4; m < 238; m+=3) {
+    strip.fill(strip.Color(red[4][(m-ROW4)/3], blue[4][(m-ROW4)/3], green[4][(m-ROW4)/3]), m, 2); // Stops after index 236
   }
-  strip.show(); // Upload all pixels to the strip
+  for (int n = ROW5; n < 288; n+=3) {
+    strip.fill(strip.Color(red[5][(n-ROW5)/3], blue[5][(n-ROW5)/3], green[5][(n-ROW5)/3]), n, 2); // Stops after index 286
+  }
+  strip.show(); // Initialize all specific pixels to 'on'
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-  //strip.fill(color, first, count);
+  delay(1000);
+
+  for (int x = 0; x < 12; x++) {
+    int prev_red = red[0][x];
+    int prev_blue = blue[0][x];
+    int prev_green = green[0][x];
+    int y = 1;
+    while (y < 6) {
+      red[y-1][x] = red[y][x];
+      blue[y-1][x] = blue[y][x];
+      green[y-1][x] = green[y][x];
+      y++;
+    }
+    red[5][x] = prev_red;
+    blue[5][x] = prev_blue;
+    green[5][x] = prev_green;
+  }
+
+  for (int i = ROW0; i < 41; i+=3) {
+    strip.fill(strip.Color(red[0][(i-ROW0)/3], blue[0][(i-ROW0)/3], green[0][(i-ROW0)/3]), i, 2); // Stops after index 38
+  }
+  for (int j = ROW1; j < 89; j+=3) {
+    strip.fill(strip.Color(red[1][(j-ROW1)/3], blue[1][(j-ROW1)/3], green[1][(j-ROW1)/3]), j, 2); // Stops after index 86
+  }
+  for (int k = ROW2; k < 139; k+=3) {
+    strip.fill(strip.Color(red[2][(k-ROW2)/3], blue[2][(k-ROW2)/3], green[2][(k-ROW2)/3]), k, 2); // Stops after index 136
+  }
+  for (int l = ROW3; l < 188; l+=3) {
+    strip.fill(strip.Color(red[3][(l-ROW3)/3], blue[3][(l-ROW3)/3], green[3][(l-ROW3)/3]), l, 2); // Stops after index 186
+  }
+  for (int m = ROW4; m < 238; m+=3) {
+    strip.fill(strip.Color(red[4][(m-ROW4)/3], blue[4][(m-ROW4)/3], green[4][(m-ROW4)/3]), m, 2); // Stops after index 236
+  }
+  for (int n = ROW5; n < 288; n+=3) {
+    strip.fill(strip.Color(red[5][(n-ROW5)/3], blue[5][(n-ROW5)/3], green[5][(n-ROW5)/3]), n, 2); // Stops after index 286
+  }
+  strip.show();
 }
